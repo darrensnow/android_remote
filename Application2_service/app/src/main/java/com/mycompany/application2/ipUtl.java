@@ -21,6 +21,16 @@ public class ipUtl {
             return getIPAddress(c);
         } else return getIP(c);
     }
+
+    public static String getDiscoveryHost(Context c) {
+        String ipv4 = findFirstAddress(true);
+        if (ipv4 != null) {
+            return ipv4;
+        }
+        String fallback = findFirstAddress(false);
+        return fallback != null ? fallback : "127.0.0.1";
+    }
+
     public static String getIP(Context c) {
         ConnectivityManager connectivityManager = (ConnectivityManager)c.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkCapabilities networkCapabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
@@ -147,6 +157,31 @@ public class ipUtl {
             ((ip >> 8) & 0xFF) + "." +
             ((ip >> 16) & 0xFF) + "." +
             (ip >> 24 & 0xFF);
+    }
+
+    private static String findFirstAddress(boolean ipv4Only) {
+        try {
+            for (Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces(); interfaces.hasMoreElements();) {
+                NetworkInterface networkInterface = interfaces.nextElement();
+                if (!networkInterface.isUp() || networkInterface.isLoopback()) {
+                    continue;
+                }
+                for (Enumeration<InetAddress> addresses = networkInterface.getInetAddresses(); addresses.hasMoreElements();) {
+                    InetAddress inetAddress = addresses.nextElement();
+                    if (inetAddress.isLoopbackAddress()) {
+                        continue;
+                    }
+                    if (ipv4Only && inetAddress instanceof Inet4Address) {
+                        return inetAddress.getHostAddress();
+                    }
+                    if (!ipv4Only) {
+                        return inetAddress.getHostAddress();
+                    }
+                }
+            }
+        } catch (SocketException ignored) {
+        }
+        return null;
     }
 
 

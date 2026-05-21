@@ -4,7 +4,6 @@ import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.GestureDescription;
 import android.graphics.Path;
 import android.view.accessibility.AccessibilityEvent;
-import android.widget.Toast;
 
 public class myAccessibity extends AccessibilityService {
     public static myAccessibity myAc;
@@ -33,8 +32,31 @@ public class myAccessibity extends AccessibilityService {
         super.onCreate();
         //Toast.makeText(getApplicationContext(), "ddfghjjjj", 10000).show();
     }
-    
-    public  void mygesture(int t,int x1,int y1,int x2,int y2){
+
+    @Override
+    public void onDestroy() {
+        if (myAc == this) {
+            myAc = null;
+        }
+        super.onDestroy();
+    }
+
+    public static boolean isReady() {
+        return myAc != null;
+    }
+
+    public static boolean performRemoteBack() {
+        return myAc != null && myAc.performGlobalAction(GLOBAL_ACTION_BACK);
+    }
+
+    public static boolean performRemoteGesture(int t,int x1,int y1,int x2,int y2){
+        if (myAc == null) {
+            return false;
+        }
+        return myAc.mygesture(t, x1, y1, x2, y2);
+    }
+
+    private boolean mygesture(int t,int x1,int y1,int x2,int y2){
         final  Path path = new Path();
 
         path.moveTo(x1,y1);
@@ -43,7 +65,7 @@ public class myAccessibity extends AccessibilityService {
 
         final GestureDescription.StrokeDescription strokeDescription 
             = new GestureDescription.StrokeDescription(path, 0, t);
-        dispatchGesture(
+        return dispatchGesture(
             new GestureDescription.Builder().addStroke(strokeDescription).build(), 
             new AccessibilityService.GestureResultCallback() {
                 @Override
@@ -57,7 +79,7 @@ public class myAccessibity extends AccessibilityService {
                     super.onCancelled(gestureDescription);
 
                 }
-            }, null);
+              }, null);
     
      }
     

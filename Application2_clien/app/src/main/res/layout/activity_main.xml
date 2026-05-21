@@ -1,32 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:id="@+id/activitymainRelativeLayout1">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activitymainRelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
 
-	<EditText
-		android:id="@+id/activity_mainEditText"
-		android:layout_alignParentTop="true"
-		android:layout_width="match_parent"
-		android:ems="10"
-		android:hint="(请按此格式填入否则程序会崩溃)192.xx.xx.xx;8888"
-		android:layout_height="wrap_content"/>
+    <TextureView
+        android:id="@+id/activity_mainTextureView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-	<Button
-		android:text="确定"
-		android:layout_centerHorizontal="true"
-		android:layout_alignParentBottom="true"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:id="@+id/activity1_bt"/>
+    <LinearLayout
+        android:id="@+id/activity_mainTopPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#AA111111"
+        android:orientation="vertical"
+        android:padding="12dp">
 
-	<!--<TextureView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:id="@+id/activity_mainTextureView"
-		android:layout_centerInParent="true"/>-->
+        <TextView
+            android:id="@+id/activity_mainStatusTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/activity_mainHostEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:ems="10"
+                android:hint="服务端 IP / 域名 / IPv6"
+                android:importantForAutofill="no"
+                android:inputType="textUri"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/activity_mainPortEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:digits="0123456789"
+                android:hint="8888"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/activity_mainDiscoverButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="发现服务端" />
+
+            <Button
+                android:id="@+id/activity1_bt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="连接" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_mainBottomPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#AA111111"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <Button
+            android:id="@+id/activity_mainBackButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="远程返回" />
+
+        <Button
+            android:id="@+id/activity_mainResetButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="重置画面" />
+    </LinearLayout>
 
 </RelativeLayout>
-

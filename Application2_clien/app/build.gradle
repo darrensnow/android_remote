@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace "com.mycompany.application2"
     compileSdkVersion 29
-    buildToolsVersion "28.0.0"
 
     defaultConfig {
-        applicationId "com.mycompany.application2"
+        applicationId "com.mycompany.application2.client"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -17,12 +17,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile 'androidx.appcompat:appcompat:1.0.0'
-	//compile 'com.google.android.material:material:1.0.0'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+	//implementation 'com.google.android.material:material:1.0.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
    // implementation "org.java-websocket:Java-WebSocket:1.3.6"
-    //compile 'com.github.smarxpan:NotchScreenTool:0.0.1'
+    //implementation 'com.github.smarxpan:NotchScreenTool:0.0.1'
 }
