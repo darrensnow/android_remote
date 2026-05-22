@@ -8,11 +8,15 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.util.Log;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.URL;
 import java.util.Enumeration;
 
 public class ipUtl {
@@ -182,6 +186,32 @@ public class ipUtl {
         } catch (SocketException ignored) {
         }
         return null;
+    }
+
+    public static String fetchPublicIp() {
+        HttpURLConnection connection = null;
+        BufferedReader reader = null;
+        try {
+            connection = (HttpURLConnection) new URL("https://api64.ipify.org").openConnection();
+            connection.setConnectTimeout(2500);
+            connection.setReadTimeout(2500);
+            connection.setUseCaches(false);
+            reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line = reader.readLine();
+            return line != null ? line.trim() : null;
+        } catch (Exception ignored) {
+            return null;
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (Exception ignored) {
+                }
+            }
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
     }
 
 

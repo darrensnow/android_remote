@@ -10,6 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <Button
+        android:id="@+id/activity_mainControlsToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="12dp"
+        android:text="显示控制"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/activity_mainTopPanel"
         android:layout_width="match_parent"
@@ -37,12 +47,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
+                android:backgroundTint="#E0E0E0"
                 android:ems="10"
                 android:hint="服务端 IP / 域名 / IPv6"
                 android:importantForAutofill="no"
                 android:inputType="textUri"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BDBDBD" />
 
             <EditText
                 android:id="@+id/activity_mainPortEditText"
@@ -50,13 +63,67 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
+                android:backgroundTint="#E0E0E0"
                 android:digits="0123456789"
                 android:hint="8888"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BDBDBD" />
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/activity_mainTokenEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#E0E0E0"
+            android:hint="可选：服务端鉴权口令"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#BDBDBD" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/activity_mainLanModeButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="局域网连接（当前）" />
+
+            <Button
+                android:id="@+id/activity_mainPublicModeButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="公网连接" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/activity_mainRelayRoomEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#E0E0E0"
+            android:hint="中继房间号（双方一致）"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#BDBDBD"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,6 +164,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="远程返回" />
+
+        <Button
+            android:id="@+id/activity_mainQualityHdButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="高清" />
+
+        <Button
+            android:id="@+id/activity_mainQualitySaveButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="省流" />
 
         <Button
             android:id="@+id/activity_mainResetButton"

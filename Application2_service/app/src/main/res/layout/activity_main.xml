@@ -1,35 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical">
+	android:layout_height="match_parent">
 
-	<TextView
-		android:layout_height="wrap_content"
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:text=""
-		android:id="@+id/activitymainTextView2"
-		android:textSize="20sp"
-		android:gravity="left"
-		android:layout_alignParentTop="true"/>
-
-	<TextView
 		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:id="@+id/activitymainTextView1"
-		android:layout_centerInParent="true"
-		android:gravity="center"
-		android:textSize="20sp"/>
+		android:orientation="vertical"
+		android:padding="16dp">
 
-	<Button
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:text="启动服务"
-		android:id="@+id/activitymainButton1"
-		android:layout_marginTop="40dp"
-		android:layout_alignParentBottom="true"/>
+		<TextView
+			android:id="@+id/activitymainTextView2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text=""
+			android:textSize="18sp" />
 
-</RelativeLayout>
+		<TextView
+			android:id="@+id/activitymainTextView1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:gravity="center"
+			android:textSize="18sp" />
+
+		<CheckBox
+			android:id="@+id/activitymainRelayModeCheckBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="使用 NAS 中继模式（公网）" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:orientation="horizontal">
+
+			<EditText
+				android:id="@+id/activitymainRelayHostEditText"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+				android:hint="NAS 中继域名 / IP"
+				android:importantForAutofill="no"
+				android:inputType="textUri"
+				android:maxLines="1"
+				android:singleLine="true" />
+
+			<EditText
+				android:id="@+id/activitymainRelayPortEditText"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="8dp"
+				android:layout_weight="1"
+				android:digits="0123456789"
+				android:hint="9000"
+				android:importantForAutofill="no"
+				android:inputType="number"
+				android:maxLines="1"
+				android:singleLine="true" />
+		</LinearLayout>
+
+		<EditText
+			android:id="@+id/activitymainRelayRoomEditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:hint="中继房间号（双方一致）"
+			android:importantForAutofill="no"
+			android:inputType="text"
+			android:maxLines="1"
+			android:singleLine="true" />
+
+		<EditText
+			android:id="@+id/activitymainAuthTokenEditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:hint="可选：设置连接鉴权口令"
+			android:importantForAutofill="no"
+			android:inputType="textPassword"
+			android:maxLines="1"
+			android:singleLine="true" />
+
+		<Button
+			android:id="@+id/activitymainButton1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="24dp"
+			android:text="启动服务" />
+	</LinearLayout>
+</ScrollView>
 
